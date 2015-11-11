@@ -12,6 +12,9 @@ public class InputForm extends FormLayout {
     private TextField targetWord = new TextField("targetWord");
     private TextField targetPhrase = new TextField("targetPhrase");
     private OptionGroup ruCase = new OptionGroup("Case");
+    private TextField translation = new TextField("Translation");
+    private OptionGroup singularPlural = new OptionGroup("SingularPlural");
+    private OptionGroup gender = new OptionGroup("Gender");
 
     public InputForm() {
         super();
@@ -26,8 +29,19 @@ public class InputForm extends FormLayout {
         targetPhrase.setRequired(true);
         this.addComponent(targetPhrase);
 
-        ruCase.addItems("nominative", "genitive", "dative", "accusative", "instrumental", "prepositional");
+        translation.setInputPrompt("Translation");
+        translation.setCaption("Translation");
+        this.addComponent(translation);
+
+        ruCase.addItems("Nominative", "Genitive", "Dative", "Accusative", "Instrumental", "Prepositional");
         this.addComponent(ruCase);
+
+        singularPlural.setCaption("Singular/Plural");
+        singularPlural.addItems("Singular", "Plural");
+        this.addComponent(singularPlural);
+
+        gender.addItems("Feminine", "Masculine", "Neuter");
+        this.addComponent(gender);
 
         Button button = new Button("Give me a click");
         button.addClickListener(new Button.ClickListener() {
