@@ -16,6 +16,7 @@ public class InputForm extends FormLayout {
     private OptionGroup singularPlural = new OptionGroup("SingularPlural");
     private OptionGroup gender = new OptionGroup("Gender");
 
+    private Button submitButton = new Button("Give me a click");
     public InputForm() {
         super();
 
@@ -43,15 +44,21 @@ public class InputForm extends FormLayout {
         gender.addItems("Feminine", "Masculine", "Neuter");
         this.addComponent(gender);
 
-        Button button = new Button("Give me a click");
-        button.addClickListener(new Button.ClickListener() {
+        submitButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                Notification.show(targetWord.getValue());
+                Notification.show(InputForm.this.toString());
             }
         });
 
-        this.addComponent(button);
+        this.addComponent(submitButton);
+    }
 
+    @Override
+    public String toString () {
+        String msg = "";
+        msg += targetWord.getValue();
+        msg += " " + targetPhrase.getValue();
+        return msg;
     }
 }
