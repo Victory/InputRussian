@@ -1,16 +1,17 @@
 package org.dfhu.inputrussian.rudb;
 
-import com.vaadin.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
-import com.vaadin.ui.Notification;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Logger;
 
-public class RuDb {
+import com.vaadin.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
+import com.vaadin.ui.Notification;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+abstract class RuDb {
 
     private static SimpleJDBCConnectionPool pool = getDbPool();
 
