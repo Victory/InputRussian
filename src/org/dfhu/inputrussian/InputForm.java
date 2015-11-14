@@ -1,5 +1,8 @@
 package org.dfhu.inputrussian;
 
+import org.dfhu.inputrussian.rudb.PhraseRow;
+import org.dfhu.inputrussian.rudb.PhraseRow.C;
+
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.FormLayout;
@@ -47,7 +50,15 @@ public class InputForm extends FormLayout {
         submitButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
-                Notification.show(InputForm.this.toString());
+                PhraseRow row = new PhraseRow();
+
+                row.setString(C.targetPhrase, targetPhrase.getValue());
+                row.setString(C.targetWord, targetWord.getValue());
+                row.setString(C.translation, translation.getValue());
+                row.setString(C.ruCase, (String) ruCase.getValue());
+                row.setString(C.gender, (String) gender.getValue());
+                row.save();
+                Notification.show(row.toString());
             }
         });
 

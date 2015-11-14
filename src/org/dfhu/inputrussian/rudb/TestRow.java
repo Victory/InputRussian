@@ -1,6 +1,6 @@
 package org.dfhu.inputrussian.rudb;
 
-public class TestRow implements IRow {
+public class TestRow extends AbstractRow {
     String kk;
     String vv;
 

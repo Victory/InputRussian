@@ -6,6 +6,7 @@ public class PhraseDb extends RuDb {
             + "target_word VARCHAR(255) NOT NULL,"
             + "target_phrase TEXT NOT NULL,"
             + "translation TEXT NOT NULL,"
+            + "ru_case VARCHAR(20) NOT NULL,"
             + "singular_plural VARCHAR(20),"
             + "gender VARCHAR(20)"
             + ")";
