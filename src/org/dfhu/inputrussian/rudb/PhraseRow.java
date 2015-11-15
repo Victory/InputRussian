@@ -33,7 +33,15 @@ public class PhraseRow extends AbstractRow {
 
             ArrayList<String> fieldsStrings = new ArrayList<>();
             for (Field field: fields) {
-                fieldsStrings.add(field.getName());
+                try {
+                    fieldsStrings.add((String) field.get(null));
+                } catch (IllegalArgumentException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IllegalAccessException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
 
             String fieldsString;
@@ -44,7 +52,7 @@ public class PhraseRow extends AbstractRow {
             String qms = String.format("%0" + fieldsStrings.size() + "d", 0).replace("0", "?,");
             qms = qms.substring(0, qms.length() - 1);
 
-            fieldsString += " ( " + qms + ") ";
+            fieldsString += " (" + qms + ") ";
             String sql = "INSERT INTO phrases " + fieldsString;
 
             Connection con;
@@ -59,7 +67,7 @@ public class PhraseRow extends AbstractRow {
                 return false;
             }
 
-            int ii = 0;
+            int ii = 1;
             for (Field field: fields) {
                 try {
                     String kk = (String) field.get(null);
@@ -80,7 +88,12 @@ public class PhraseRow extends AbstractRow {
             }
 
             try {
-                stmt.execute();
+                if (stmt.executeUpdate() == 0) {
+                    throw new SQLException("why?");
+                }
+                stmt.close();
+                con.commit();
+                con.close();
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
