@@ -89,7 +89,7 @@ public class PhraseRow extends AbstractRow {
 
             try {
                 if (stmt.executeUpdate() == 0) {
-                    throw new SQLException("why?");
+                    throw new SQLException("No rows were updated");
                 }
                 stmt.close();
                 con.commit();

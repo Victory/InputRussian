@@ -20,13 +20,14 @@ public class InputrussianUI extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
+        getPage().setTitle("Input Russian");
         final VerticalLayout layout = new VerticalLayout();
         layout.setMargin(true);
         setContent(layout);
 
         InputForm form = new InputForm();
-
         layout.addComponent(form);
+
     }
 
 }
