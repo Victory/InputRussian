@@ -1,5 +1,10 @@
 package org.dfhu.inputrussian.rudb;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.dfhu.inputrussian.rudb.PhraseRow.C;
+
 public class PhraseDb extends RuDb {
 
     public static final String CREATE_TABLE = "CREATE TABLE phrases ("
@@ -17,5 +22,25 @@ public class PhraseDb extends RuDb {
 
     public static PhraseDb getInstance () {
         return INSTANCE;
+    }
+
+
+    @Override
+    public String getTableName () {
+        return "phrases";
+    }
+
+    @Override
+    public PhraseRow populateRow(ResultSet results) {
+        PhraseRow row = new PhraseRow();
+        try {
+            row.setString(C.targetWord, results.getString(C.targetWord));
+            row.setString(C.targetPhrase, results.getString(C.targetPhrase));
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        return row;
     }
 }
