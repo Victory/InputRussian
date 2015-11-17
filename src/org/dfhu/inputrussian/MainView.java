@@ -37,12 +37,19 @@ public class MainView extends VerticalLayout implements View {
 
         table.addContainerProperty("Word", String.class, "");
         table.addContainerProperty("Phrase", String.class, "");
-
+        table.addContainerProperty("Case", String.class, "");
+        table.addContainerProperty("Translation", String.class, "");
+        table.addContainerProperty("Singular", String.class, "");
+        table.addContainerProperty("Gender", String.class, "");
         PhraseRow row = (PhraseRow) PhraseDb.getInstance().first("1 = 1");
         Object itemId = table.addItem();
         Item item = table.getItem(itemId);
         item.getItemProperty("Word").setValue(row.getString(C.targetWord));
         item.getItemProperty("Phrase").setValue(row.getString(C.targetPhrase));
+        item.getItemProperty("Case").setValue(row.getString(C.ruCase));
+        item.getItemProperty("Translation").setValue(row.getString(C.translation));
+        item.getItemProperty("Singular").setValue(row.getString(C.singular));
+        item.getItemProperty("Gender").setValue(row.getString(C.gender));
 
         table.setPageLength(table.size());
         addComponent(table);

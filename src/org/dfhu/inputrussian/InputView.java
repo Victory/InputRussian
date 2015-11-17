@@ -3,6 +3,8 @@ package org.dfhu.inputrussian;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
@@ -17,11 +19,17 @@ public class InputView extends VerticalLayout implements View {
     @Override
     public void enter(ViewChangeEvent event) {
        this.setMargin(true);
+       Button nav = new Button("Home");
+       nav.addClickListener(new Button.ClickListener() {
+           @Override
+           public void buttonClick(ClickEvent event) {
+               navigator.navigateTo("");
+           }
+       });
+       addComponent(nav);
 
        InputForm form = new InputForm();
-       this.addComponent(form);
-
-
+       addComponent(form);
 
        Notification.show("Input Russian");
     }

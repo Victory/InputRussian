@@ -36,6 +36,10 @@ public class PhraseDb extends RuDb {
         try {
             row.setString(C.targetWord, results.getString(C.targetWord));
             row.setString(C.targetPhrase, results.getString(C.targetPhrase));
+            row.setString(C.translation, results.getString(C.translation));
+            row.setString(C.ruCase, results.getString(C.ruCase));
+            row.setString(C.gender, results.getString(C.gender));
+            row.setString(C.singular, results.getString(C.singular));
         } catch (SQLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
