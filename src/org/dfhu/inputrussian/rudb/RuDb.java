@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import com.vaadin.data.util.sqlcontainer.connection.SimpleJDBCConnectionPool;
@@ -66,5 +67,34 @@ abstract class RuDb {
     public IRow first(String where) {
         ResultSet results = getFirstResultSet(getTableName(), "1 = 1");
         return this.populateRow(results);
+    }
+
+    public ArrayList<IRow> whereMany(String where) {
+        ResultSet results = getWhereManyResultSet(getTableName(), where);
+        ArrayList<IRow> rows = new ArrayList<>();
+
+        try {
+            while (results.next()) {
+                rows.add(this.populateRow(results));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Runtime SQL Exception: " + e.getMessage());
+        }
+        return rows;
+    }
+
+    private ResultSet getWhereManyResultSet(String tableName, String where) {
+        String sql = "SELECT * FROM " + tableName + " WHERE " + where;
+        try {
+            Connection connection = getDbPool().reserveConnection();
+            Statement stmt = connection.createStatement();
+            ResultSet results = stmt.executeQuery(sql);
+            return results;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new RuntimeException("Runtime SQL Exception: " + e.getMessage());
+        }
     }
 }
