@@ -93,7 +93,7 @@ public class PhraseRow extends AbstractRow {
                 }
                 stmt.close();
                 con.commit();
-                con.close();
+                RuDb.getDbPool().releaseConnection(con);
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

@@ -6,7 +6,6 @@ import org.dfhu.inputrussian.rudb.IRow;
 import org.dfhu.inputrussian.rudb.PhraseDb;
 import org.dfhu.inputrussian.rudb.PhraseRow.C;
 
-import com.vaadin.data.Item;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -46,18 +45,17 @@ public class MainView extends VerticalLayout implements View {
         ArrayList<IRow> rows = PhraseDb.getInstance().whereMany("1 = 1");
         for (IRow row: rows) {
             Object itemId = table.addItem();
-            Item item = table.getItem(itemId);
+            ItemHelper item = new ItemHelper(table.getItem(itemId));
 
-            item.getItemProperty("Word").setValue(row.getString(C.targetWord));
-            item.getItemProperty("Phrase").setValue(row.getString(C.targetPhrase));
-            item.getItemProperty("Case").setValue(row.getString(C.ruCase));
-            item.getItemProperty("Translation").setValue(row.getString(C.translation));
-            item.getItemProperty("Singular").setValue(row.getString(C.singular));
-            item.getItemProperty("Gender").setValue(row.getString(C.gender));
+            item.add("Word", row.getString(C.targetWord));
+            item.add("Phrase",row.getString(C.targetPhrase));
+            item.add("Case", row.getString(C.ruCase));
+            item.add("Translation", row.getString(C.translation));
+            item.add("Singular", row.getString(C.singular));
+            item.add("Gender", row.getString(C.gender));
         }
         table.setPageLength(table.size());
         addComponent(table);
         Notification.show("Main View");
     }
-
 }
