@@ -56,6 +56,7 @@ public class InputForm extends FormLayout {
                 row.setString(C.targetWord, targetWord.getValue());
                 row.setString(C.translation, translation.getValue());
                 row.setString(C.ruCase, (String) ruCase.getValue());
+                row.setString(C.singular, (String) singularPlural.getValue());
                 row.setString(C.gender, (String) gender.getValue());
                 row.save();
                 Notification.show(row.toString());

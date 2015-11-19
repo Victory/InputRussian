@@ -18,14 +18,12 @@ import com.vaadin.ui.VerticalLayout;
 public class MainView extends VerticalLayout implements View {
 
     private Navigator navigator;
+    Table table;
+    Button nav;
 
     public MainView(Navigator navigator) {
         this.navigator = navigator;
-    }
-
-    @Override
-    public void enter(ViewChangeEvent event) {
-        Button nav = new Button("Navigate");
+        nav = new Button("Navigate");
         nav.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
@@ -34,7 +32,12 @@ public class MainView extends VerticalLayout implements View {
         });
         addComponent(nav);
 
-        Table table = new Table("Current Phrases");
+        table = new Table("Current Phrases");
+        addComponent(table);
+    }
+
+    @Override
+    public void enter(ViewChangeEvent event) {
 
         table.addContainerProperty("Word", String.class, "");
         table.addContainerProperty("Phrase", String.class, "");
@@ -55,7 +58,6 @@ public class MainView extends VerticalLayout implements View {
             item.add("Gender", row.getString(C.gender));
         }
         table.setPageLength(table.size());
-        addComponent(table);
         Notification.show("Main View");
     }
 }
