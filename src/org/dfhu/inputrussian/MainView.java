@@ -33,18 +33,20 @@ public class MainView extends VerticalLayout implements View {
         addComponent(nav);
 
         table = new Table("Current Phrases");
-        addComponent(table);
-    }
-
-    @Override
-    public void enter(ViewChangeEvent event) {
-
         table.addContainerProperty("Word", String.class, "");
         table.addContainerProperty("Phrase", String.class, "");
         table.addContainerProperty("Case", String.class, "");
         table.addContainerProperty("Translation", String.class, "");
         table.addContainerProperty("Singular", String.class, "");
         table.addContainerProperty("Gender", String.class, "");
+
+        addComponent(table);
+    }
+
+    @Override
+    public void enter(ViewChangeEvent event) {
+
+        table.removeAllItems();
         ArrayList<IRow> rows = PhraseDb.getInstance().whereMany("1 = 1");
         for (IRow row: rows) {
             Object itemId = table.addItem();
