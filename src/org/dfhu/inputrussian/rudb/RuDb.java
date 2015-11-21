@@ -65,7 +65,7 @@ abstract class RuDb {
     }
 
     public IRow first(String where) {
-        ResultSet results = getFirstResultSet(getTableName(), "1 = 1");
+        ResultSet results = getFirstResultSet(getTableName(), where);
         return this.populateRow(results);
     }
 
