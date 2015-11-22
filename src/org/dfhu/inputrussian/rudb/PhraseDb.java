@@ -31,19 +31,13 @@ public class PhraseDb extends RuDb {
     }
 
     @Override
-    public PhraseRow populateRow(ResultSet results) {
+    public PhraseRow populateRow(ResultSet results) throws SQLException {
         PhraseRow row = new PhraseRow();
-        try {
-            row.setString(C.targetWord, results.getString(C.targetWord));
-            row.setString(C.targetPhrase, results.getString(C.targetPhrase));
-            row.setString(C.translation, results.getString(C.translation));
-            row.setString(C.ruCase, results.getString(C.ruCase));
-            row.setString(C.gender, results.getString(C.gender));
-            row.setString(C.singular, results.getString(C.singular));
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        row.setString(C.targetWord, results.getString(C.targetWord));
+        row.setString(C.targetPhrase, results.getString(C.targetPhrase));
+        row.setString(C.translation, results.getString(C.translation));
+        row.setString(C.ruCase, results.getString(C.ruCase));
+        row.setString(C.gender, results.getString(C.gender));
 
         return row;
     }

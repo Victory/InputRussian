@@ -60,11 +60,11 @@ abstract class RuDb {
     protected String getTableName () {
         throw new NotImplementedException();
     }
-    protected IRow populateRow (ResultSet results) {
+    protected IRow populateRow (ResultSet results) throws SQLException {
         throw new NotImplementedException();
     }
 
-    public IRow first(String where) {
+    public IRow first(String where) throws SQLException {
         ResultSet results = getFirstResultSet(getTableName(), where);
         return this.populateRow(results);
     }
