@@ -77,6 +77,7 @@ abstract class RuDb {
             while (results.next()) {
                 rows.add(this.populateRow(results));
             }
+            results.getStatement().close();
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Runtime SQL Exception: " + e.getMessage());
@@ -90,6 +91,7 @@ abstract class RuDb {
             Connection connection = getDbPool().reserveConnection();
             Statement stmt = connection.createStatement();
             ResultSet results = stmt.executeQuery(sql);
+            getDbPool().releaseConnection(connection);
             return results;
 
         } catch (SQLException e) {

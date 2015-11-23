@@ -50,6 +50,11 @@ public class InputForm extends FormLayout {
         submitButton.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
+
+                if (!isValid()) {
+                    Notification.show("Did not add phrase. All fields are required!");
+                    return;
+                }
                 PhraseRow row = new PhraseRow();
 
                 row.setString(C.targetPhrase, targetPhrase.getValue());
@@ -72,5 +77,14 @@ public class InputForm extends FormLayout {
         msg += targetWord.getValue();
         msg += " " + targetPhrase.getValue();
         return msg;
+    }
+
+    private boolean isValid() {
+        return !targetPhrase.getValue().isEmpty() &&
+                !targetWord.getValue().isEmpty() &&
+                !translation.getValue().isEmpty() &&
+                !((String) ruCase.getValue()).isEmpty() &&
+                !((String) singularPlural.getValue()).isEmpty() &&
+                !((String) gender.getValue()).isEmpty();
     }
 }

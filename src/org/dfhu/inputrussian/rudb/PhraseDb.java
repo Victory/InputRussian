@@ -12,8 +12,8 @@ public class PhraseDb extends RuDb {
             + "target_phrase TEXT NOT NULL,"
             + "translation TEXT NOT NULL,"
             + "ru_case VARCHAR(20) NOT NULL,"
-            + "singular_plural VARCHAR(20),"
-            + "gender VARCHAR(20)"
+            + "singular_plural VARCHAR(20) NOT NULL,"
+            + "gender VARCHAR(20) NOT NULL"
             + ")";
 
     private static final PhraseDb INSTANCE = new PhraseDb();
@@ -37,6 +37,7 @@ public class PhraseDb extends RuDb {
         row.setString(C.targetPhrase, results.getString(C.targetPhrase));
         row.setString(C.translation, results.getString(C.translation));
         row.setString(C.ruCase, results.getString(C.ruCase));
+        row.setString(C.singular, results.getString(C.singular));
         row.setString(C.gender, results.getString(C.gender));
 
         return row;
