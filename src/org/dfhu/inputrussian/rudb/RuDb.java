@@ -69,6 +69,13 @@ abstract class RuDb {
         return this.populateRow(results);
     }
 
+    /**
+     * use the where clause as a string literal to getWhereManResults and return
+     * IRow objects in an array
+     *
+     * @param where
+     * @return
+     */
     public ArrayList<IRow> whereMany(String where) {
         ResultSet results = getWhereManyResultSet(getTableName(), where);
         ArrayList<IRow> rows = new ArrayList<>();
@@ -93,7 +100,6 @@ abstract class RuDb {
             ResultSet results = stmt.executeQuery(sql);
             getDbPool().releaseConnection(connection);
             return results;
-
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Runtime SQL Exception: " + e.getMessage());

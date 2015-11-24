@@ -30,6 +30,7 @@ public class PhraseDb extends RuDb {
         return "phrases";
     }
 
+
     @Override
     public PhraseRow populateRow(ResultSet results) throws SQLException {
         PhraseRow row = new PhraseRow();
