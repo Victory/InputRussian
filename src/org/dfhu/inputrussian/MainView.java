@@ -23,6 +23,7 @@ public class MainView extends VerticalLayout implements View {
 
     public MainView(Navigator navigator) {
         this.navigator = navigator;
+        this.setMargin(true);
         nav = new Button("Navigate");
         nav.addClickListener(new Button.ClickListener() {
             @Override
