@@ -32,7 +32,7 @@ public class InputView extends VerticalLayout implements View {
 
     @Override
     public void enter(ViewChangeEvent event) {
-              Notification.show("Input Russian");
+        Notification.show("Input Russian");
     }
 
 }

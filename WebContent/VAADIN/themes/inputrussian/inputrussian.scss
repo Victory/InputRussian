@@ -33,4 +33,8 @@
   @include valo;
 
   // Insert your own theme rules here
+  
+  .v-button .v-button-wrap {
+      background-color: #eeffee;
+   }
 }
