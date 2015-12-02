@@ -20,11 +20,12 @@ public class MainView extends VerticalLayout implements View {
     private Navigator navigator;
     Table table;
     Button nav;
+    Button exportNav;
 
     public MainView(Navigator navigator) {
         this.navigator = navigator;
         this.setMargin(true);
-        nav = new Button("Navigate");
+        nav = new Button("Input");
         nav.addClickListener(new Button.ClickListener() {
             @Override
             public void buttonClick(ClickEvent event) {
@@ -32,6 +33,15 @@ public class MainView extends VerticalLayout implements View {
             }
         });
         addComponent(nav);
+
+        exportNav = new Button("Export");
+        exportNav.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(ClickEvent event) {
+                navigator.navigateTo("export");
+            }
+        });
+        addComponent(exportNav);
 
         table = new Table("Current Phrases");
         table.addContainerProperty("Word", String.class, "");

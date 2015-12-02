@@ -27,6 +27,7 @@ public class InputrussianUI extends UI {
 
         navigator = new Navigator(this, this);
         navigator.addView("input", new InputView(navigator));
+        navigator.addView("export", new ExportView(navigator));
         navigator.addView("", new MainView(navigator));
     }
 
