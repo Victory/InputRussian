@@ -17,7 +17,7 @@ abstract class RuDb {
     private static SimpleJDBCConnectionPool pool = getDbPool();
 
     public static SimpleJDBCConnectionPool getDbPool() {
-        String path = System.getProperty("user.home") + "/db/russian.sqlite";
+        String path = getDbPath();
         Logger.getLogger("testing").warning(path);
         try {
             return new SimpleJDBCConnectionPool(
@@ -30,6 +30,11 @@ abstract class RuDb {
             Notification.show("runtime sqlite error " + e.getMessage());
             return null;
         }
+    }
+
+    public static String getDbPath ()
+    {
+        return System.getProperty("user.home") + "/db/russian.sqlite";
     }
 
     /**
