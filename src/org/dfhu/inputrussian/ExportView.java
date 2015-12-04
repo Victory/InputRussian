@@ -12,6 +12,7 @@ import com.vaadin.server.FileResource;
 import com.vaadin.server.Resource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.RichTextArea;
 import com.vaadin.ui.VerticalLayout;
 
 public class ExportView extends VerticalLayout implements View {
@@ -30,6 +31,10 @@ public class ExportView extends VerticalLayout implements View {
             }
         });
         addComponent(homeNav);
+
+        RichTextArea ta = new RichTextArea();
+        ta.setCaption("Edit before you download");
+        addComponent(ta);
 
         download = new Button("Download");
         addComponent(download);
